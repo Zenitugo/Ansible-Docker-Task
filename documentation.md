@@ -13,7 +13,7 @@ There are two ways to check if your containers were created:
 - Docker Desktop User Interface(UI)
 - On the terminal.
 
-To check on the terminal, use the following commands:
+**To check on the terminal, use the following commands:**
 
       - To see the docker images you pulled use `docker images`
       - To see the docker containers created use `docker container ps`
