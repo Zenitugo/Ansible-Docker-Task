@@ -1,0 +1,67 @@
+---
+- name: Deploy Docker with ansible
+  hosts: localhost
+  tasks:
+  # Pull a docker image
+    - name: Pull nginx image
+      docker_image:
+        name: nginx
+        tag: latest
+        source: pull
+
+    - name: Pull Jenkins image
+      docker_image:
+        name: jenkins/jenkins
+        tag: latest
+        source: pull
+
+    - name: Pull postgres image
+      docker_image:
+        name: postgres
+        tag: latest
+        source: pull
+  
+  # Run a docker container from nginx image
+    - name: Run docker container from nginx image
+      docker_container:
+        name: nginx-container
+        image: nginx:latest
+        state: started
+        ports:
+          - 8080:80
+        detach: yes  # Run in background mode
+
+  # Run a docker container from jebkins image
+    - name: Run docker container from jenkins image
+      docker_container:
+        name: jenkins23-container
+        image: jenkins/jenkins:latest
+        state: started
+        ports:
+        - 9080:8080
+        detach: yes  # Run in background mode
+
+
+# Run a docker container from jenkins image
+    - name: Run docker container from jenkins image
+      docker_container:
+        name: ruby-container
+        image: jenkins/jenkins:latest
+        state: started
+        ports:
+        - 7080:8080
+        detach: yes  # Run in background mode
+
+  # Run a docker container from postgres image
+    - name: Create db container and connect to network
+      docker_container:
+        name: db-container
+        image: postgres:latest
+        state: started
+        ports:
+          - 5432:5432
+        networks:
+          - name: "{{ docker_network_name }}"  
+        detach: yes  # Run in background mode    
+    
+
