@@ -16,7 +16,8 @@ There are two ways to check if your containers were created:
 **To check on the terminal, use the following commands:**
 
       - To see the docker images you pulled use `docker images`
-      - To see the docker containers created use `docker container ps`
+      - To see the docker containers created use `docker ps`
+      - To see all containers(both running and stopped) use `docker ps -a`
 
 ### Image of the nginx server
 ![nginx](./images/docker-nginx.png)
